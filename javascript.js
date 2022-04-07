@@ -10,10 +10,15 @@ let paperClicked = false;
 let scissorsClicked = false;
 const removal = document.getElementById('stuff');
 const hide = document.getElementById("btn");
-let playerpoints = document.getElementById("p-points");
-let computerpoints = document.getElementById("c-points");
+let playerpoints;
+let computerpoints;
+JSON.parse(window.localStorage.getItem('playerpoints'));
+JSON.parse(window.localStorage.getItem('computerpoints'));
+playerpoints = "" + playerpoints;
+computerpoints = "" + computerpoints;
 hide.style.visibility = 'hidden';
 answer.style.visibility = 'hidden';
+
 rock.addEventListener('click', function handleClick() {
   rockClicked = true;
   playerinput = rock;
@@ -42,7 +47,7 @@ scissors.addEventListener('click', function handleClick() {
 });
 function playGame(){
   if(rockClicked){
-    document.getElementById("userinput").src="http://clipart-library.com/img/1603206.png";
+    document.getElementById("userinput").src="Screenshot 2022-04-07 114927.png";
     randomNumber = Math.floor(Math.random()*3);
     switch(randomNumber){
       case 0:
@@ -50,16 +55,16 @@ function playGame(){
       computerinput = scissors;
       break;
       case 1:
-      document.getElementById("computerinput").src="http://clipart-library.com/data_images/64750.jpg";
+      document.getElementById("computerinput").src="Screenshot 2022-04-07 114914.png";
       computerinput = paper;
       break;
       case 2:
-      document.getElementById("computerinput").src="http://clipart-library.com/img/1603206.png";
+      document.getElementById("computerinput").src="Screenshot 2022-04-07 114927.png";
       computerinput = rock;
       break;
     }
   }else if(paperClicked){
-    document.getElementById("userinput").src="http://clipart-library.com/data_images/64750.jpg";
+    document.getElementById("userinput").src="Screenshot 2022-04-07 114914.png";
     randomNumber = Math.floor(Math.random()*3);
     switch(randomNumber){
       case 0:
@@ -67,11 +72,11 @@ function playGame(){
       computerinput = scissors;
       break;
       case 1:
-      document.getElementById("computerinput").src="http://clipart-library.com/data_images/64750.jpg";
+      document.getElementById("computerinput").src="Screenshot 2022-04-07 114914.png";
       computerinput = paper;
       break;
       case 2:
-      document.getElementById("computerinput").src="http://clipart-library.com/img/1603206.png";
+      document.getElementById("computerinput").src="Screenshot 2022-04-07 114927.png";
       computerinput = rock;
       break;
     }
@@ -84,11 +89,11 @@ function playGame(){
       computerinput = scissors;
       break;
       case 1:
-      document.getElementById("computerinput").src="http://clipart-library.com/data_images/64750.jpg";
+      document.getElementById("computerinput").src="Screenshot 2022-04-07 114914.png";
       computerinput = paper;
       break;
       case 2:
-      document.getElementById("computerinput").src="http://clipart-library.com/img/1603206.png";
+      document.getElementById("computerinput").src="Screenshot 2022-04-07 114927.png";
       computerinput = rock;
       break;
     }
@@ -98,36 +103,40 @@ function playGame(){
   }else{
     if(computerinput === rock &&  playerinput === paper){
       document.getElementById("result").innerHTML="You win";
-      playerpoints = 1 + playerpoints;
+      playerpoints = 1 + playercookie;
       playerpoints = "" + playerpoints;
+      window.localStorage.setItem(playerpoints);
       document.getElementById("p-points").innerHTML = playerpoints;
     }else if(computerinput === paper &&  playerinput === rock){
       document.getElementById("result").innerHTML="You lose";
-      computerpoints = 1 + computerpoints;
-      computerpoints = "" + computerpoints
+      computerpoints = 1 + computercookie;
+      computerpoints = "" + computerpoints;
+      window.localStorage.setItem(computerpoints);
       document.getElementById("c-points").innerHTML = computerpoints;
     }else if(computerinput === rock &&  playerinput === scissors){
       document.getElementById("result").innerHTML="You lose";
-      computerpoints = 1 + computerpoints;
-      computerpoints = "" + computerpoints
+      computerpoints = 1 + computercookie;
+      computerpoints = "" + computerpoints;
+      window.localStorage.setItem(computerpoints);
       document.getElementById("c-points").innerHTML = computerpoints;
     }else if(computerinput === scissors &&  playerinput === rock){
       document.getElementById("result").innerHTML="You win";
-      playerpoints = 1 + playerpoints;
+      playerpoints = 1 + playercookie;
       playerpoints = "" + playerpoints;
+      window.localStorage.setItem(playerpoints);
       document.getElementById("p-points").innerHTML = playerpoints;
     }else if(computerinput === paper &&  playerinput === scissors){
       document.getElementById("result").innerHTML="You win";
-      playerpoints = 1 + playerpoints;
+      playerpoints = 1 + playercookie;
       playerpoints = "" + playerpoints;
-
+      window.localStorage.setItem(playerpoints);
       document.getElementById("p-points").innerHTML = playerpoints;
     }else if(computerinput === scissors &&  playerinput === paper){
       document.getElementById("result").innerHTML="You lose";
-      computerpoints = 1 + computerpoints;
-      computerpoints = "" + computerpoints
+      computerpoints = 1 + computercookie;
+      computerpoints = "" + computerpoints;
+      window.localStorage.setItem(computerpoints);
       document.getElementById("c-points").innerHTML = computerpoints;
     }
   }
-  console.log(randomNumber);
 }
