@@ -17,21 +17,16 @@ let computerpoints=0;
 rock.addEventListener('click', function handleClick() {
   rockClicked = true;
   playerinput = rock;
-
-
   playGame();
 });
 paper.addEventListener('click', function handleClick() {
   paperClicked = true;
   playerinput = paper;
-
-
   playGame();
 });
 scissors.addEventListener('click', function handleClick() {
   scissorsClicked = true;
   playerinput = scissors;
-
   playGame();
 });
 function playGame(){
@@ -122,4 +117,7 @@ function reset(){
     document.getElementById("p-points").innerHTML = 0;
     document.getElementById("c-points").innerHTML = 0;
   }
+  rockClicked = false;
+  scissorsClicked = false;
+  paperClicked = false;
 }
